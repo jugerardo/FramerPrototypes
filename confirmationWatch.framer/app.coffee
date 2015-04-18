@@ -224,6 +224,7 @@ clockLayer = new Layer
 photoToDelete = {}
 
 fnResetOptions = () ->
+	DeleteLayer.visible = false
 	deleteButton.center()
 	ConfirmLayer.y = 0
 	ConfirmLayer.x = 0
@@ -239,7 +240,7 @@ fnPhotoClicked = (lyr) ->
 	PhotosLayer.blur = 10
 	animationShowDelete.start()
 	photoToDelete = lyr
-	print lyr
+
 
 fnMoving = (lyr, bgLyr) ->
 	newSize = Utils.modulate(lyr.y,   [originY, slingShotLimit], [1, (Screen.height*1.3)/initialSize])
@@ -251,7 +252,7 @@ fnStopAnimation = (lyr) ->
  			properties: 
  				y: Screen.height * 2
  				blur: 50
- 		#lyr.y = originY
+ 		DeleteLayer.visible = false
  
 fnUpdatePhotoView = (opt) ->
 	PhotosLayer.animate({
@@ -366,8 +367,9 @@ noAnimationOriginalSize = new Animation({
 
 for photo in PhotosLayer.subLayers
 	photo.on Events.Click, ->
-		fnResetOptions()
-		fnPhotoClicked(this)
+		if !DeleteLayer.visible
+			fnResetOptions()
+			fnPhotoClicked(this)
 
 deleteIcon.on Events.TouchStart, ->
 	deleteIcon.animate({

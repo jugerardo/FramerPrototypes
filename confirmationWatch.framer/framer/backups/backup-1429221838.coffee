@@ -98,11 +98,11 @@ textLayer = new Layer
 	superLayer: ConfirmLayer
 	html: "Are you sure you want to delete this?"
 	width: 312
+	y: 40
 	backgroundColor: "none"
 	style:
 		"font-style":"Helvetica Neue"
 		"font-weight": "100"
-		"margin-top": "15px"
 		"padding": "10px 15px 0 25px"
 		"text-align": "center"
 
@@ -122,20 +122,29 @@ bgLayer.center()
 bgLayer.originX = 0.5
 bgLayer.originY = 0.5
 	
+# optLayer = new Layer
+# 	superLayer: ConfirmLayer
+# 	width: initialSize, 
+# 	height: initialSize, 
+# 	backgroundColor: "#fff",
+# 	style:
+# 		"text-align": "center"
+# 		"font-family": "Helvetica",
+# 		"font-weight": "100",
+# 		"font-size": "25px",
+# 		"line-height": initialSize + "px"
+# 		"border-radius": "60px",
+# 		"color": "#2DD7AA"
+# 		
+# optLayer.center()
+
 optLayer = new Layer
 	superLayer: ConfirmLayer
 	width: initialSize, 
 	height: initialSize, 
 	backgroundColor: "#fff",
-	html: "Yes",
 	style:
-		"text-align": "center"
-		"font-family": "Helvetica",
-		"font-weight": "100",
-		"font-size": "25px",
-		"line-height": initialSize + "px"
 		"border-radius": "60px",
-		"color": "#2DD7AA"
 		
 optLayer.center()
 
@@ -145,7 +154,7 @@ bgLayer.x = 25
 optLayer.draggable.enabled = true
 
 originY = optLayer.y
-constY = (Screen.height/2) + (Screen.height/4)  #+ (optLayer.height*1.2)
+constY = (Screen.height/2) + (Screen.height/4)
 slingShotLimit = (Screen.height/2) + (Screen.height/5)
 
 optLayer.draggable.horizontal = false
@@ -153,6 +162,31 @@ optLayer.draggable.constraints = {y:optLayer.y, height:constY}
 optLayer.draggable.overdrag = false
 optLayer.draggable.momentum = false
 optLayer.draggable.speedY = 0.6
+
+
+yesTextLayer = new Layer
+	superLayer: optLayer
+	width: optLayer.width, 
+	height: 25, 
+	backgroundColor: "",
+	html: "Yes",
+	style:
+		"text-align": "center"
+		"font-family": "Helvetica",
+		"font-weight": "100",
+		"font-size": "25px",
+		"color": "#2DD7AA"
+		
+yesTextLayer.center()
+
+greenArrow = new Layer
+	superLayer: optLayer
+	width: 15
+	height: 15
+	y: 60
+	image: "images/arrow-01.png"
+
+greenArrow.centerX()
 
 #-----------------NO--------------------------
 
@@ -173,21 +207,29 @@ noBgLayer.center()
 noBgLayer.originX = 0.5
 noBgLayer.originY = 0.5
 	
+# noOptLayer = new Layer 
+# 	superLayer: ConfirmLayer
+# 	width: initialSize, 
+# 	height: initialSize, 
+# 	backgroundColor: "#fff",
+# 	html: "No",
+# 	style:
+# 		"text-align": "center"
+# 		"font-family": "Helvetica",
+# 		"font-weight": "100",
+# 		"font-size": "25px",
+# 		"line-height": initialSize + "px"
+# 		"border-radius": "60px",
+# 		"color": "#ec5659"
+
 noOptLayer = new Layer 
 	superLayer: ConfirmLayer
 	width: initialSize, 
 	height: initialSize, 
 	backgroundColor: "#fff",
-	html: "No",
 	style:
-		"text-align": "center"
-		"font-family": "Helvetica",
-		"font-weight": "100",
-		"font-size": "25px",
-		"line-height": initialSize + "px"
 		"border-radius": "60px",
-		"color": "#ec5659"
-		
+
 noOptLayer.center()
 
 noOptLayer.x = Screen.width - 105
@@ -201,6 +243,30 @@ noOptLayer.draggable.overdrag = false
 noOptLayer.draggable.momentum = false
 noOptLayer.draggable.speedY = 0.6
 
+
+noTextLayer = new Layer
+	superLayer: noOptLayer
+	width: noOptLayer.width, 
+	height: 25, 
+	backgroundColor: "",
+	html: "No",
+	style:
+		"text-align": "center"
+		"font-family": "Helvetica",
+		"font-weight": "100",
+		"font-size": "25px",
+		"color": "#ec5659"
+		
+noTextLayer.center()
+
+redArrow = new Layer
+	superLayer: noOptLayer
+	width: 15
+	height: 15
+	y: 60
+	image: "images/arrow-02.png"
+
+redArrow.centerX()
 
 
 #---------------------------------------------
